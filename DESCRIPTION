@@ -1,0 +1,11 @@
+Package: BMDD
+Type: Package
+Title: Bimodal Dirichlet distribution (BMDD) for microbiome data
+Version: 0.1.0
+Author: Huijuan Zhou, Jun Chen, Xianyang Zhang
+Maintainer: Huijuan Zhou <huijuanzhou2019@gmail.com>
+Description: The function implements a variational EM algorithm for estimating the parameters in bimodal Dirichlet distribution. For the microbiome data, the unobserved true compositions are assumed to follow the bimodal Dirichlet distribution, thus the function also estimates the posterior distribution of the true compositions.
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.2.3
