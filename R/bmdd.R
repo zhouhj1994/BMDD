@@ -214,6 +214,8 @@ pi.fun <- function(para, pi.xi = FALSE, pi.zeta = FALSE,
 #' #towards targeted non-invasive biomarkers for colorectal cancer.
 #' #Reference for LinDA: Zhou et al. (2022). LinDA: linear models for differential abundance analysis
 #' #of microbiome compositional data.
+#'
+#' #install package "phyloseq" for importing "phy" dataset
 #' data(phy)
 #' otu_filter <- function(feature.dat, prev = 0.1, dep = 1000){
 #'   idx <- apply(feature.dat, 1, function(x) sum(x > 0) > (ncol(feature.dat) * prev))
