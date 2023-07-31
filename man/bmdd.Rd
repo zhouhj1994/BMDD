@@ -150,10 +150,15 @@ In this case, alpha0, alpha1 and pi are matrices of m by n.
 }
 \examples{
 
-# install package "phyloseq" for importing "phy" dataset
-# data "phy" is a phyloseq-class experiment-level object. Reference: Yu et al. (2017).
-# Metagenomic analysis of faecal microbiome as a tool towards
-# targeted non-invasive biomarkers for colorectal cancer.
+#This is an example of using BMDD as an zero-imputation method for LinDA to identify colorectal cancer
+#associated bacterial species. Data "phy" is a phyloseq-class experiment-level object.
+#LinDA is a differential abundance analysis method for microbiome data.
+#The package is available at https://CRAN.R-project.org/package=MicrobiomeStat
+#and https://github.com/zhouhj1994/LinDA.
+#Reference for the dataset: Yu et al. (2017). Metagenomic analysis of faecal microbiome as a tool
+#towards targeted non-invasive biomarkers for colorectal cancer.
+#Reference for LinDA: Zhou et al. (2022). LinDA: linear models for differential abundance analysis
+#of microbiome compositional data.
 data(phy)
 otu_filter <- function(feature.dat, prev = 0.1, dep = 1000){
   idx <- apply(feature.dat, 1, function(x) sum(x > 0) > (ncol(feature.dat) * prev))
