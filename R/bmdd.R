@@ -205,7 +205,10 @@ pi.fun <- function(para, pi.xi = FALSE, pi.zeta = FALSE,
 #' @references Huijuan Zhou, Lu Yang, Jun Chen, and Xianyang Zhang. Bimodal Dirichlet Distributions And Its Application to Microbiome Data Analysis.
 #' @examples
 #'
-#' #install package "phyloseq" for importing "phy" dataset
+#' # install package "phyloseq" for importing "phy" dataset
+#' # data "phy" is a phyloseq-class experiment-level object. Reference: Yu et al. (2017). Metagenomic analysis of faecal microbiome as a tool towards
+#' # targeted non-invasive biomarkers for colorectal cancer.
+#' data(phy)
 #' otu_filter <- function(feature.dat, prev = 0.1, dep = 1000){
 #'   idx <- apply(feature.dat, 1, function(x) sum(x > 0) > (ncol(feature.dat) * prev))
 #'   idx2 <- colSums(feature.dat) > dep
