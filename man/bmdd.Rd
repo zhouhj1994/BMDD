@@ -171,7 +171,7 @@ linda.obj  <- MicrobiomeStat::linda(feature.dat = feature.dat, meta.dat = meta.d
 linda.res <- linda.obj$output[[1]][,'padj',drop = F]
 }
 \references{
-Huijuan Zhou, Jun Chen, and Xianyang Zhang. Bimodal Dirichlet Distributions And Its Application to Microbiome Data Analysis.
+Huijuan Zhou, Lu Yang, Jun Chen, and Xianyang Zhang. Bimodal Dirichlet Distributions And Its Application to Microbiome Data Analysis.
 }
 \author{
 Huijuan Zhou \email{huijuanzhou2019@gmail.com}

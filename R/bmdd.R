@@ -201,7 +201,7 @@ pi.fun <- function(para, pi.xi = FALSE, pi.zeta = FALSE,
 #' @author Huijuan Zhou \email{huijuanzhou2019@gmail.com}
 #' Jun Chen \email{Chen.Jun2@mayo.edu}
 #' Xianyang Zhang \email{zhangxiany@stat.tamu.edu}
-#' @references Huijuan Zhou, Jun Chen, and Xianyang Zhang. Bimodal Dirichlet Distributions And Its Application to Microbiome Data Analysis.
+#' @references Huijuan Zhou, Lu Yang, Jun Chen, and Xianyang Zhang. Bimodal Dirichlet Distributions And Its Application to Microbiome Data Analysis.
 #' @examples
 #'
 #' #install package "phyloseq" for importing "phy" dataset
