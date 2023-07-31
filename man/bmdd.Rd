@@ -151,7 +151,8 @@ In this case, alpha0, alpha1 and pi are matrices of m by n.
 \examples{
 
 # install package "phyloseq" for importing "phy" dataset
-# data "phy" is a phyloseq-class experiment-level object. Reference: Yu et al. (2017). Metagenomic analysis of faecal microbiome as a tool towards
+# data "phy" is a phyloseq-class experiment-level object. Reference: Yu et al. (2017).
+# Metagenomic analysis of faecal microbiome as a tool towards
 # targeted non-invasive biomarkers for colorectal cancer.
 data(phy)
 otu_filter <- function(feature.dat, prev = 0.1, dep = 1000){
