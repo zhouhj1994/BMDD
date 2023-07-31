@@ -215,15 +215,15 @@ pi.fun <- function(para, pi.xi = FALSE, pi.zeta = FALSE,
 #' #Reference for LinDA: Zhou et al. (2022). LinDA: linear models for differential abundance analysis
 #' #of microbiome compositional data.
 #'
-#' #install package "phyloseq" for importing "phy" dataset
+#' #install packages "phyloseq", "MicrobiomeStat"
 #' data(phy)
 #' otu_filter <- function(feature.dat, prev = 0.1, dep = 1000){
 #'   idx <- apply(feature.dat, 1, function(x) sum(x > 0) > (ncol(feature.dat) * prev))
 #'   idx2 <- colSums(feature.dat) > dep
 #'   return(feature.dat[idx, idx2])
 #' }
-#' otu.tab <- as.data.frame(as.matrix(otu_table(phy)))
-#' meta.dat <- as.data.frame(as.matrix(sample_data(phy)))
+#' otu.tab <- as.data.frame(as.matrix(phyloseq::otu_table(phy)))
+#' meta.dat <- as.data.frame(as.matrix(phyloseq::sample_data(phy)))
 #' meta.dat$grp <- as.factor(meta.dat$grp)
 #' feature.dat <- otu_filter(otu.tab)
 #' meta.dat <- meta.dat[colnames(feature.dat), ]
