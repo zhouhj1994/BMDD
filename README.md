@@ -12,6 +12,8 @@ thus the package also estimates the posterior distribution of the true compositi
 devtools::install_github("zhouhj1994/BMDD")
 ```
 ## Example
+This is an example of using BMDD as an zero-imputation method for LinDA to identify colorectal cancer associated bacterial species. Data "phy" is a phyloseq-class experiment-level object. Reference for the dataset: Yu et al. (2017). Metagenomic analysis of faecal microbiome as a tool towards targeted non-invasive biomarkers for colorectal cancer. LinDA is a differential abundance analysis method for microbiome data. Reference for LinDA: Zhou et al. (2022). LinDA: linear models for differential abundance analysis of microbiome compositional data. The package is available at https://CRAN.R-project.org/package=MicrobiomeStat and https://github.com/zhouhj1994/LinDA.
+
 ```r
 #install package "phyloseq" for importing "phy" dataset
 otu_filter <- function(feature.dat, prev = 0.1, dep = 1000){
