@@ -1,0 +1,16 @@
+#' Identifying Colorectal cancer (CRC) associated bacterial species
+#'
+#' phyloseq-class experiment-level object including OTU table, sample data, taxonomy table, and phylogenetic tree
+#' Reference: Yu et al. (2017). Metagenomic analysis of faecal microbiome as a tool towards
+#' targeted non-invasive biomarkers for colorectal cancer.
+#'
+#' @format phyloseq-class experiment-level object
+#' \describe{
+#'   \item{otu_table()}{OTU Table, 417 taxa and 128 samples}
+#'   \item{sample_data()}{Sample Data, 128 samples by 18 sample variables}
+#'   \item{tax_table()}{Taxonomy Table, 417 taxa by 8 taxonomic ranks}
+#'   \item{phy_tree()}{Phylogenetic Tree, 417 tips and 416 internal nodes}
+
+#' }
+#'
+"phy"

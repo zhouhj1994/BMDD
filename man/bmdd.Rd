@@ -148,6 +148,28 @@ and use zeta to denote the regression coefficients on taxon covariates for pi.
 Thus, the lengths of eta0, eta1 and xi are mp and the lengths of kappa0, kappa1 and zeta are nq.
 In this case, alpha0, alpha1 and pi are matrices of m by n.
 }
+\examples{
+
+#install package "phyloseq" for importing "phy" dataset
+otu_filter <- function(feature.dat, prev = 0.1, dep = 1000){
+  idx <- apply(feature.dat, 1, function(x) sum(x > 0) > (ncol(feature.dat) * prev))
+  idx2 <- colSums(feature.dat) > dep
+  return(feature.dat[idx, idx2])
+}
+otu.tab <- as.data.frame(as.matrix(otu_table(phy)))
+meta.dat <- as.data.frame(as.matrix(sample_data(phy)))
+meta.dat$grp <- as.factor(meta.dat$grp)
+feature.dat <- otu_filter(otu.tab)
+meta.dat <- meta.dat[colnames(feature.dat), ]
+bmdd.fit <- bmdd(W = feature.dat, type = 'count')
+prop.bmdd <- t(t(bmdd.fit$beta) / colSums(bmdd.fit$beta))
+bmdd.obj  <- MicrobiomeStat::linda(feature.dat = prop.bmdd, meta.dat = meta.dat,
+                                   formula = '~grp', feature.dat.type = 'proportion')
+bmdd.res <- bmdd.obj$output[[1]][,'padj',drop = F]
+linda.obj  <- MicrobiomeStat::linda(feature.dat = feature.dat, meta.dat = meta.dat,
+                                    formula = '~grp', feature.dat.type = 'count')
+linda.res <- linda.obj$output[[1]][,'padj',drop = F]
+}
 \references{
 Huijuan Zhou, Jun Chen, and Xianyang Zhang. Bimodal Dirichlet Distributions And Its Application to Microbiome Data Analysis.
 }
