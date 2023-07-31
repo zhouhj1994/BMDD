@@ -199,7 +199,8 @@ pi.fun <- function(para, pi.xi = FALSE, pi.zeta = FALSE,
 #' \item{para.pi}{if no covariates are incorporated, then \code{para.pi} is pi itself. if there are covariates,
 #' then \code{para.pi} is the estimate of the regression coefficients. The length of \code{para.pi} the is same as \code{para.pi.init}}
 #' @author Huijuan Zhou \email{huijuanzhou2019@gmail.com}
-#' Jun Chen \email{Chen.Jun2@mayo.edu}
+#' Lu Yang \email{yang.lu@mayo.edu}
+#' Jun Chen \email{chen.jun2@mayo.edu}
 #' Xianyang Zhang \email{zhangxiany@stat.tamu.edu}
 #' @references Huijuan Zhou, Lu Yang, Jun Chen, and Xianyang Zhang. Bimodal Dirichlet Distributions And Its Application to Microbiome Data Analysis.
 #' @examples

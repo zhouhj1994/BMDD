@@ -175,6 +175,7 @@ Huijuan Zhou, Lu Yang, Jun Chen, and Xianyang Zhang. Bimodal Dirichlet Distribut
 }
 \author{
 Huijuan Zhou \email{huijuanzhou2019@gmail.com}
-Jun Chen \email{Chen.Jun2@mayo.edu}
+Lu Yang \email{yang.lu@mayo.edu}
+Jun Chen \email{chen.jun2@mayo.edu}
 Xianyang Zhang \email{zhangxiany@stat.tamu.edu}
 }
