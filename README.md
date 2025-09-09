@@ -19,25 +19,65 @@ This is an example of using BMDD as an zero-imputation method for LinDA to ident
 
 ```r
 #install packages "phyloseq", "MicrobiomeStat"
+library(BMDD)
+
 data(phy)
+
 otu_filter <- function(feature.dat, prev = 0.1, dep = 1000){
   idx <- apply(feature.dat, 1, function(x) sum(x > 0) > (ncol(feature.dat) * prev))
   idx2 <- colSums(feature.dat) > dep
   return(feature.dat[idx, idx2])
 }
-otu.tab <- as.data.frame(as.matrix(phyloseq::otu_table(phy)))
+feature.dat <- as.data.frame(as.matrix(phyloseq::otu_table(phy)))
 meta.dat <- as.data.frame(as.matrix(phyloseq::sample_data(phy)))
 meta.dat$grp <- as.factor(meta.dat$grp)
-feature.dat <- otu_filter(otu.tab)
+feature.dat <- otu_filter(feature.dat)
 meta.dat <- meta.dat[colnames(feature.dat), ]
 
-bmdd.fit <- bmdd(W = feature.dat, type = 'count')
-prop.bmdd <- t(t(bmdd.fit$beta) / colSums(bmdd.fit$beta))
-bmdd.obj  <- MicrobiomeStat::linda(feature.dat = prop.bmdd, meta.dat = meta.dat,
-                                   formula = '~grp', feature.dat.type = 'proportion')
-bmdd.res <- bmdd.obj$output[[1]][,'padj',drop = F]
+m <- nrow(feature.dat)
+n <- ncol(feature.dat)
 
-linda.obj  <- MicrobiomeStat::linda(feature.dat = feature.dat, meta.dat = meta.dat,
-                                    formula = '~grp', feature.dat.type = 'count')
-linda.res <- linda.obj$output[[1]][,'padj',drop = F]
+bmdd.obj <- bmdd(W = feature.dat, type = 'count', trace = TRUE)
+
+# posterior mean
+beta <- bmdd.obj$beta
+post.mean <- t(t(beta) / colSums(beta))
+
+## generate 100 posterior samples of the composition for each sample
+zero.fun <- function(X) {
+  X <- t(apply(X, 1, function (x) {
+    if(all(x == 0)) {
+      x[x == 0] <- min(X[X != 0])
+    } else {
+      x[x == 0] <- min(x[x != 0]) 
+    }
+    return(x)
+  }))
+  return(X)
+}
+
+K <- 100
+beta <- beta[, rep(1 : n, K)]
+X <- matrix(rgamma(m * n * K, beta, 1), m)
+X <- t(t(X) / colSums(X))
+if(any(X == 0)) {
+  X <- zero.fun(X)
+  X <- t(t(X) / colSums(X))
+}
+colnames(X) <- paste0('sample', 1 : (n * K))
+rownames(X) <- rownames(beta)
+
+## apply LinDA to the proportion matrix, with 100 replicates per sample.
+id <- factor(rep(1 : n, K))
+grp <- rep(meta.dat$grp, K)
+Z <- cbind.data.frame(grp, id)
+rownames(Z) <- colnames(X)
+
+linda.bmdd.obj <- MicrobiomeStat::linda(feature.dat = X, meta.dat = Z, 
+                                   formula = "~grp+(1|id)", feature.dat.type = "proportion")
+
+# apply LinDA to the original count matrix
+linda.obj <- MicrobiomeStat::linda(feature.dat = feature.dat, meta.dat = meta.dat, 
+                                   formula = "~grp", feature.dat.type = "count")
+
 ```
